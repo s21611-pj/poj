@@ -46,6 +46,24 @@ public class ChemicalElement {
             chemList.add(new ChemicalElement(Integer.parseInt(line[0]), line[1], line[2]));
         }
     }
+    
+    public ChemicalElement findByName(String name) {
+        return chemList.stream()
+                .filter(e -> e.getName().equals(name))
+                .findAny().orElse(null);
+    }
+
+    public ChemicalElement findBySymbol(String symbol) {
+        return chemList.stream()
+                .filter(e -> e.getSymbol().equals(symbol))
+                .findAny().orElse(null);
+    }
+
+    public ChemicalElement findByAtomicNumber(int atomicNumber) {
+        return chemList.stream()
+                .filter(e -> e.getAtomicNumber() == (atomicNumber))
+                .findAny().orElse(null);
+    }
 
     public String isAlkaliMetal(int atomNum) {
         switch(atomNum) {
@@ -89,6 +107,9 @@ public class ChemicalElement {
         for(ChemicalElement i : list.chemList) {
             System.out.println(i);
         }
-
+        
+        System.out.println(list.findBySymbol("Rg"));
+        System.out.println(list.findByName("Bismuth"));
+        System.out.println(list.findByAtomicNumber(11));
     }
 }
